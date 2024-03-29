@@ -8,8 +8,8 @@ const PhotoListItem = ({ photo }) => {
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={photo.profile} alt="User Profile"/>
         <div className="photo-list__user-info">
-          <h3>{photo.username}</h3>
-          <p className="photo-list__user-location">{photo.location.city}, {photo.location.country}</p>
+          <div>{photo.username}</div>
+          <div className="photo-list__user-location">{photo.location.city}, {photo.location.country}</div>
         </div>
       </div>
     </div>
@@ -17,4 +17,5 @@ const PhotoListItem = ({ photo }) => {
 };
 
 export default PhotoListItem;
+
 
