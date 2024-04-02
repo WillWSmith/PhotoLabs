@@ -6,6 +6,9 @@ import closeSymbol from '../assets/closeSymbol.svg';
 const PhotoDetailsModal = ({ setDisplayModal, photoDetails }) => {
   const closeModal = () => setDisplayModal(false);
 
+  if (!photoDetails || !photoDetails.urls || !photoDetails.user) {
+    console.error('No photo details provided to PhotoDetailsModal');
+  }
   console.log(photoDetails);
 
   return (
