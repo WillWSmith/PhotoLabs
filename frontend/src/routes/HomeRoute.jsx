@@ -4,14 +4,14 @@ import '../styles/HomeRoute.scss';
 import PhotoList from 'components/PhotoList';
 import { FavouritesContext } from 'App';
 
-const HomeRoute = ({topics, photos, setDisplayModal}) => {
+const HomeRoute = ({topics, photos, setDisplayModal, setSelectedPhoto}) => {
   const { favourites, toggleFavourite } = useContext(FavouritesContext);
   const favouriteExists = favourites.length > 0;
 
   return (
     <div className="home-route">
       <TopNavigationBar topics={topics} isFavPhotoExist={favouriteExists}/>
-      <PhotoList photos={photos} favourites={favourites} toggleFavourite={toggleFavourite} setDisplayModal={setDisplayModal}/>
+      <PhotoList photos={photos} favourites={favourites} toggleFavourite={toggleFavourite} setDisplayModal={setDisplayModal} setSelectedPhoto={setSelectedPhoto}/>
     </div>
   );
 };

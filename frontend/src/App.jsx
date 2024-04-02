@@ -30,11 +30,13 @@ const App = () => {
 
   const [displayModal, setDisplayModal] = useState(false);
 
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+
   return (
     <FavouritesProvider>
     <div className="App">
-    {displayModal && <PhotoDetailsModal setDisplayModal={setDisplayModal}/>}
-      <HomeRoute photos={photos} topics={topics} setDisplayModal={setDisplayModal} />
+    {displayModal && selectedPhoto && <PhotoDetailsModal photoDetails={selectedPhoto} setDisplayModal={setDisplayModal}/>}
+      <HomeRoute photos={photos} topics={topics} setDisplayModal={setDisplayModal} setSelectedPhoto={setSelectedPhoto}/>
     </div>
     </FavouritesProvider>
   );

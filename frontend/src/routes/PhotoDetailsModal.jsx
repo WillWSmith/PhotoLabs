@@ -3,8 +3,10 @@ import React from 'react';
 import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
 
-const PhotoDetailsModal = ({ setDisplayModal }) => {
+const PhotoDetailsModal = ({ setDisplayModal, photoDetails }) => {
   const closeModal = () => setDisplayModal(false);
+
+  console.log(photoDetails);
 
   return (
     <div className="photo-details-modal">
