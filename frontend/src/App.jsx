@@ -38,23 +38,24 @@ const App = () => {
   };
 
   return (
-<FavouritesProvider>
-  <div className="App">
-    <HomeRoute
-      photos={photos}
-      topics={topics}
-      setDisplayModal={setDisplayModal}
-      setSelectedPhoto={handlePhotoSelect}
-    />
-  </div>
-  {displayModal && selectedPhoto && (
-    <PhotoDetailsModal
-      photoDetails={selectedPhoto}
-      setDisplayModal={setDisplayModal}
-      similarPhotos={similarPhotos}
-    />
-  )}
-</FavouritesProvider>
+    <FavouritesProvider>
+      <div className="App">
+        <HomeRoute
+          photos={photos}
+          topics={topics}
+          setDisplayModal={setDisplayModal}
+          setSelectedPhoto={handlePhotoSelect}
+        />
+        {displayModal && <div className="modal-backdrop" onClick={() => setDisplayModal(false)} />} 
+        {displayModal && selectedPhoto && (
+          <PhotoDetailsModal
+            photoDetails={selectedPhoto}
+            setDisplayModal={setDisplayModal}
+            similarPhotos={similarPhotos}
+          />
+        )}
+      </div>
+    </FavouritesProvider>
   );
 };
 
