@@ -28,11 +28,13 @@ const FavouritesProvider = ({ children }) => {
 
 const App = () => {
 
+  const [displayModal, setDisplayModal] = useState(false);
+
   return (
     <FavouritesProvider>
     <div className="App">
-      <PhotoDetailsModal />
-      <HomeRoute photos={photos} topics={topics} />
+    {displayModal && <PhotoDetailsModal />}
+      <HomeRoute photos={photos} topics={topics} setDisplayModal={setDisplayModal} />
     </div>
     </FavouritesProvider>
   );

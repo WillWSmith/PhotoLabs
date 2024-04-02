@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
-import { FavouritesContext } from "App";
+import React from "react";
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from 'components/PhotoFavButton';
 
-const PhotoListItem = ({ photo, isFavourited, toggleFavourite }) => {
+const PhotoListItem = ({ photo, isFavourited, toggleFavourite, setDisplayModal }) => {
 
   return (
     <div className="photo-list__item">
@@ -11,7 +10,7 @@ const PhotoListItem = ({ photo, isFavourited, toggleFavourite }) => {
         isFavourited={isFavourited}
         toggleFavourite={toggleFavourite}
       />
-      <img className="photo-list__image" src={photo.urls.regular} alt="Photo"/>
+      <img className="photo-list__image" src={photo.urls.regular} alt="Photo" onClick={() => setDisplayModal(true)}/>
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={photo.user.profile} alt="User Profile"/>
         <div className="photo-list__user-info">
