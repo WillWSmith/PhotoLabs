@@ -27,19 +27,37 @@ const FavouritesProvider = ({ children }) => {
 };
 
 const App = () => {
-
   const [displayModal, setDisplayModal] = useState(false);
-
   const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [similarPhotos, setSimilarPhotos] = useState([]);
+
+  const handlePhotoSelect = (photo) => {
+    setSelectedPhoto(photo);
+    setDisplayModal(true);
+    const similarArray = Array.isArray(photo.similar_photos) ? photo.similar_photos : Object.values(photo.similar_photos || {});
+    setSimilarPhotos(similarArray);
+  };
 
   return (
-    <FavouritesProvider>
-    <div className="App">
-    {displayModal && selectedPhoto && <PhotoDetailsModal photoDetails={selectedPhoto} setDisplayModal={setDisplayModal}/>}
-      <HomeRoute photos={photos} topics={topics} setDisplayModal={setDisplayModal} setSelectedPhoto={setSelectedPhoto}/>
-    </div>
-    </FavouritesProvider>
+<FavouritesProvider>
+  <div className="App">
+    <HomeRoute
+      photos={photos}
+      topics={topics}
+      setDisplayModal={setDisplayModal}
+      setSelectedPhoto={handlePhotoSelect}
+    />
+  </div>
+  {displayModal && selectedPhoto && (
+    <PhotoDetailsModal
+      photoDetails={selectedPhoto}
+      setDisplayModal={setDisplayModal}
+      similarPhotos={similarPhotos}
+    />
+  )}
+</FavouritesProvider>
   );
 };
 
 export default App;
+

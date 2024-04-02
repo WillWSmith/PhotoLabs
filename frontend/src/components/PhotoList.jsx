@@ -3,14 +3,19 @@ import PhotoListItem from "./PhotoListItem";
 import "../styles/PhotoList.scss";
 
 const PhotoList = ({ photos, favourites, toggleFavourite, setDisplayModal, setSelectedPhoto }) => {
+
+  const isFavourited = (photoId) => favourites ? favourites.includes(photoId) : false;
+
   return (
     <ul className="photo-list">
       {photos.map(photo => (
         <PhotoListItem 
           key={photo.id} 
           photo={photo} 
-          isFavourited={favourites.includes(photo.id)}
-          toggleFavourite={() => toggleFavourite(photo.id)} setDisplayModal={setDisplayModal} setSelectedPhoto={setSelectedPhoto}
+          isFavourited={isFavourited(photo.id)}
+          toggleFavourite={toggleFavourite ? () => toggleFavourite(photo.id) : undefined} 
+          setDisplayModal={setDisplayModal} 
+          setSelectedPhoto={setSelectedPhoto}
         />
       ))}
     </ul>
