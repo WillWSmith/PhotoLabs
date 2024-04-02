@@ -20,6 +20,7 @@ const PhotoDetailsModal = ({ setDisplayModal, photoDetails, similarPhotos }) => 
     alt={photoDetails.description || 'Photo description unavailable'} 
   />
   <div className="photo-details-modal__photographer-details">
+    
     <img 
       src={photoDetails.user.profile} 
       alt={`${photoDetails.user.name}'s profile`} 

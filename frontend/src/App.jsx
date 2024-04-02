@@ -34,8 +34,7 @@ const App = () => {
   const handlePhotoSelect = (photo) => {
     setSelectedPhoto(photo);
     setDisplayModal(true);
-    const similarArray = Array.isArray(photo.similar_photos) ? photo.similar_photos : Object.values(photo.similar_photos || {});
-    setSimilarPhotos(similarArray);
+    setSimilarPhotos(Array.isArray(photo.similar_photos) ? photo.similar_photos : Object.values(photo.similar_photos || {}));
   };
 
   return (
