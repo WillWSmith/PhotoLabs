@@ -4,6 +4,7 @@ import './App.scss';
 import photos from 'mocks/photos';
 import topics from 'mocks/topics';
 import { useState, createContext, useContext } from 'react';
+import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 
 export const FavouritesContext = createContext();
 
@@ -30,6 +31,7 @@ const App = () => {
   return (
     <FavouritesProvider>
     <div className="App">
+      <PhotoDetailsModal />
       <HomeRoute photos={photos} topics={topics} />
     </div>
     </FavouritesProvider>
