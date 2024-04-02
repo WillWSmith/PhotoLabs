@@ -29,7 +29,10 @@ const PhotoDetailsModal = ({ setDisplayModal, photoDetails, similarPhotos }) => 
     <div>
       <div className="photo-details-modal__photographer-info">{photoDetails.user.name}</div>
       {photoDetails.location.city && (
-        <div className="photo-details-modal__photographer-location">{photoDetails.location.city}, {photoDetails.location.country}</div>
+        <div className="photo-details-modal__photographer-location">
+          {photoDetails.location.city ? `${photoDetails.location.city}, ` : ''}
+          {photoDetails.location.country}
+        </div>
       )}
     </div>
   </div>
