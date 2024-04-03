@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import TopNavigationBar from 'components/TopNavigationBar';
 import '../styles/HomeRoute.scss';
 import PhotoList from 'components/PhotoList';
-import { FavouritesContext } from 'App';
+import { FavouritesContext } from 'hooks/useApplicationData';
 
 const HomeRoute = ({topics, photos, setDisplayModal, setSelectedPhoto}) => {
   const { favourites, toggleFavourite } = useContext(FavouritesContext);

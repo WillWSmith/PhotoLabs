@@ -3,7 +3,7 @@ import PhotoList from 'components/PhotoList';
 import PhotoFavButton from 'components/PhotoFavButton';
 import '../styles/PhotoDetailsModal.scss';
 import closeSymbol from '../assets/closeSymbol.svg';
-import { FavouritesContext } from 'App';
+import { FavouritesContext } from 'hooks/useApplicationData';
 
 const PhotoDetailsModal = ({ setDisplayModal, photoDetails, similarPhotos }) => {
   const { favourites, toggleFavourite } = useContext(FavouritesContext);
