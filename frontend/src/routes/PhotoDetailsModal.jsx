@@ -44,8 +44,12 @@ const PhotoDetailsModal = ({ closePhotoDetails, photoDetails, similarPhotos }) =
           </div>
         </div>
       </div>
+      
       <h3 className="photo-details-modal__images">Similar Photos</h3>
+      
+      <div className='photo-details-modal__top-bar'>
         <PhotoList photos={similarPhotos} favourites={favourites} toggleFavourite={toggleFavourite} />
+        </div>
     </div>
   );
 };
