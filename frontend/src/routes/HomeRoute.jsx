@@ -4,7 +4,7 @@ import '../styles/HomeRoute.scss';
 import PhotoList from 'components/PhotoList';
 import { FavouritesContext } from 'hooks/useApplicationData';
 
-const HomeRoute = ({topics, photos, setDisplayModal, setSelectedPhoto}) => {
+const HomeRoute = ({topics, photos, handlePhotoSelect}) => {
   const { favourites, toggleFavourite } = useContext(FavouritesContext);
   const favouriteExists = favourites.length > 0;
 
@@ -15,8 +15,7 @@ const HomeRoute = ({topics, photos, setDisplayModal, setSelectedPhoto}) => {
       photos={photos} 
       favourites={favourites} 
       toggleFavourite={toggleFavourite} 
-      setDisplayModal={setDisplayModal} 
-      setSelectedPhoto={setSelectedPhoto}/>
+      handlePhotoSelect={handlePhotoSelect}/>
     </div>
   );
 };

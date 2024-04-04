@@ -2,7 +2,7 @@ import React from "react";
 import PhotoListItem from "./PhotoListItem";
 import "../styles/PhotoList.scss";
 
-const PhotoList = ({ photos, favourites, toggleFavourite, setDisplayModal, setSelectedPhoto }) => {
+const PhotoList = ({ photos, favourites, toggleFavourite, handlePhotoSelect }) => {
 
   const isFavourited = (photoId) => favourites ? favourites.includes(photoId) : false;
 
@@ -14,8 +14,7 @@ const PhotoList = ({ photos, favourites, toggleFavourite, setDisplayModal, setSe
           photo={photo} 
           isFavourited={isFavourited(photo.id)}
           toggleFavourite={toggleFavourite ? () => toggleFavourite(photo.id) : undefined} 
-          setDisplayModal={setDisplayModal} 
-          setSelectedPhoto={setSelectedPhoto}
+          handlePhotoSelect={handlePhotoSelect}
         />
       ))}
     </ul>

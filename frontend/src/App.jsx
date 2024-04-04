@@ -19,11 +19,15 @@ const App = () => {
     favourites,
     toggleFavourite,
     displayModal,
-    setDisplayModal,
     selectedPhoto,
     similarPhotos,
     handlePhotoSelect,
+    dispatch,
   } = useApplicationData();
+
+  const closePhotoDetails = () => {
+    dispatch({ type: 'DISPLAY_PHOTO_DETAILS', payload: false });
+  };
 
   return (
     <FavouritesProvider favourites={favourites} toggleFavourite={toggleFavourite}>
@@ -31,14 +35,13 @@ const App = () => {
         <HomeRoute
           photos={photos}
           topics={topics}
-          setDisplayModal={setDisplayModal}
-          setSelectedPhoto={handlePhotoSelect}
+          handlePhotoSelect={handlePhotoSelect}
         />
-        {displayModal && <div className="modal-backdrop" onClick={() => setDisplayModal(false)} />} 
+        {displayModal && <div className="modal-backdrop" onClick={closePhotoDetails} />} 
         {displayModal && selectedPhoto && (
           <PhotoDetailsModal
             photoDetails={selectedPhoto}
-            setDisplayModal={setDisplayModal}
+            closePhotoDetails={closePhotoDetails}
             similarPhotos={similarPhotos}
           />
         )}
@@ -48,5 +51,6 @@ const App = () => {
 };
 
 export default App;
+
 
 

@@ -5,15 +5,14 @@ import '../styles/PhotoDetailsModal.scss';
 import closeSymbol from '../assets/closeSymbol.svg';
 import { FavouritesContext } from 'hooks/useApplicationData';
 
-const PhotoDetailsModal = ({ setDisplayModal, photoDetails, similarPhotos }) => {
+const PhotoDetailsModal = ({ closePhotoDetails, photoDetails, similarPhotos }) => {
   const { favourites, toggleFavourite } = useContext(FavouritesContext);
   
-  const closeModal = () => setDisplayModal(false);
   const isMainPhotoFavourited = favourites.includes(photoDetails.id);
 
   return (
     <div className="photo-details-modal">
-        <button className="photo-details-modal__close-button" onClick={closeModal}>
+        <button className="photo-details-modal__close-button" onClick={closePhotoDetails}>
           <img src={closeSymbol} alt="Close" />
         </button>
       <div className="photo-details-modal__images">
