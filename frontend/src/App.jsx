@@ -1,7 +1,6 @@
 import React from 'react';
 import HomeRoute from 'routes/HomeRoute';
 import './App.scss';
-import topics from 'mocks/topics';
 import { FavouritesContext, useApplicationData } from 'hooks/useApplicationData';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 
@@ -23,6 +22,7 @@ const App = () => {
     handlePhotoSelect,
     dispatch,
     photoData,
+    topicData,
   } = useApplicationData();
 
   const closePhotoDetails = () => {
@@ -34,7 +34,7 @@ const App = () => {
       <div className="App">
         <HomeRoute
           photos={photoData}
-          topics={topics}
+          topics={topicData}
           handlePhotoSelect={handlePhotoSelect}
         />
         {displayModal && <div className="modal-backdrop" onClick={closePhotoDetails} />} 

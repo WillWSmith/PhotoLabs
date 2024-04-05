@@ -46,7 +46,7 @@ function reducer(state, action) {
     case ACTIONS.SET_TOPIC_DATA:
       return {
         ...state,
-        topics: action.payload,
+        topicData: action.payload,
       };
     case ACTIONS.SELECT_PHOTO:
       return {
@@ -77,6 +77,13 @@ export const useApplicationData = () => {
     .then(res => res.json())
     .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
     .catch(error => console.error('Error Fetching Photos:', error))
+  }, [])
+
+  useEffect(() => {
+    fetch('/api/topics')
+    .then(res => res.json())
+    .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
+    .catch(error => console.error('Error Fetching Topics:', error))
   }, [])
 
   const toggleFavourite = (photoId) => {
