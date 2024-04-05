@@ -9,6 +9,7 @@ const initialState = {
   similarPhotos: [],
   photoData: [],
   topicData: [],
+  selectedTopic: null,
 };
 
 export const ACTIONS = {
@@ -19,6 +20,7 @@ export const ACTIONS = {
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   SET_SIMILAR_PHOTOS: 'SET_SIMILAR_PHOTOS',
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
 };
 
 
@@ -63,6 +65,11 @@ function reducer(state, action) {
           ...state,
           similarPhotos: action.payload,
         };
+      case ACTIONS.GET_PHOTOS_BY_TOPICS:
+        return {
+          ...state,
+          selectedTopic: action.payload,
+        };
       default:
         throw new Error(`Unsupported action type: ${action.type}`);
   }
@@ -85,6 +92,13 @@ export const useApplicationData = () => {
     .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
     .catch(error => console.error('Error Fetching Topics:', error))
   }, [])
+
+  useEffect(() => {
+    fetch(`/api/topics/photos/:topic_id`)
+    .then(res => res.json())
+    .then((data) => dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data }))
+    .catch(error => console.error('Error Fetching Photos by Topic:', error))
+  }, [state.selectedTopic])
 
   const toggleFavourite = (photoId) => {
     const actionType = state.favourites.includes(photoId) ? ACTIONS.FAV_PHOTO_REMOVED : ACTIONS.FAV_PHOTO_ADDED;
