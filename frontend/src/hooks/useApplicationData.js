@@ -20,8 +20,8 @@ export const ACTIONS = {
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   SET_SIMILAR_PHOTOS: 'SET_SIMILAR_PHOTOS',
-  SELECT_TOPIC: 'SELECT_TOPIC',
   GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
+  SET_SELECTED_TOPIC: 'SET_SELECTED_TOPIC'
 };
 
 
@@ -69,13 +69,14 @@ function reducer(state, action) {
       case ACTIONS.GET_PHOTOS_BY_TOPICS:
         return {
           ...state,
-          selectedTopic: action.payload,
-        };
-      case ACTIONS.SELECT_TOPIC:
-        return {
-          ...state,
           photoData: action.payload,
         };
+      case ACTIONS.SET_SELECTED_TOPIC:
+        return {
+          ...state,
+          selectedTopic: action.payload,
+        };
+        
       default:
         throw new Error(`Unsupported action type: ${action.type}`);
   }
@@ -85,13 +86,15 @@ export const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const selectTopic = (topicId) => {
-    dispatch({ type: ACTIONS.SELECT_TOPIC, payload: topicId });
+    dispatch({ type: ACTIONS.SET_SELECTED_TOPIC, payload: topicId });
   };
 
   useEffect(() => {
     fetch('/api/photos')
     .then(res => res.json())
-    .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+    .then((data) => {
+      dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data })
+    })
     .catch(error => console.error('Error Fetching Photos:', error))
   }, [])
 
@@ -108,11 +111,13 @@ export const useApplicationData = () => {
       fetch(`/api/topics/photos/${topicId}`)
         .then(res => {
           if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
+            throw new Error(`HTTP error! Status: ${res.status}`);
           }
           return res.json();
         })
-        .then((data) => dispatch({ type: ACTIONS.SET_PHOTOS_BY_TOPIC, payload: data }))
+        .then(data => {
+          dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data });
+        })
         .catch(error => console.error('Error Fetching Photos by Topic:', error));
     }
   }, [state.selectedTopic]);

@@ -3,7 +3,10 @@ import PhotoListItem from "./PhotoListItem";
 import "../styles/PhotoList.scss";
 
 const PhotoList = ({ photos, favourites, toggleFavourite, handlePhotoSelect }) => {
-
+  if (!Array.isArray(photos)) {
+    console.log('Photos is not an array', photos);
+    return null;
+  }
   const isFavourited = (photoId) => favourites ? favourites.includes(photoId) : false;
 
   return (
