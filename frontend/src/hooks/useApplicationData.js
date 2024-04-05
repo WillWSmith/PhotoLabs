@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer, useEffect } from 'react';
 
 export const FavouritesContext = createContext();
 
@@ -7,8 +7,8 @@ const initialState = {
   displayModal: false,
   selectedPhoto: null,
   similarPhotos: [],
-  photos: [],
-  topics: [],
+  photoData: [],
+  topicData: [],
 };
 
 export const ACTIONS = {
@@ -21,6 +21,16 @@ export const ACTIONS = {
   SET_SIMILAR_PHOTOS: 'SET_SIMILAR_PHOTOS',
 };
 
+//API Photo Fetch
+
+useEffect(() => {
+  fetch('http://localhost:3001/api/photos')
+  .then(res => res.json())
+  .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+  .catch(error => console.error('Error Fetching Photos:', error))
+}, [])
+
+//Reducer Function
 function reducer(state, action) {
   switch (action.type) {
     case ACTIONS.FAV_PHOTO_ADDED:
@@ -38,7 +48,7 @@ function reducer(state, action) {
     case ACTIONS.SET_PHOTO_DATA:
       return {
         ...state,
-        photos: action.payload,
+        photoData: action.payload,
       };
     case ACTIONS.SET_TOPIC_DATA:
       return {
