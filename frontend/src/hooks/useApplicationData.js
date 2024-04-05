@@ -20,6 +20,7 @@ export const ACTIONS = {
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   SET_SIMILAR_PHOTOS: 'SET_SIMILAR_PHOTOS',
+  SELECT_TOPIC: 'SELECT_TOPIC',
   GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
 };
 
@@ -70,6 +71,11 @@ function reducer(state, action) {
           ...state,
           selectedTopic: action.payload,
         };
+      case ACTIONS.SELECT_TOPIC:
+        return {
+          ...state,
+          photoData: action.payload,
+        };
       default:
         throw new Error(`Unsupported action type: ${action.type}`);
   }
@@ -77,7 +83,10 @@ function reducer(state, action) {
 
 export const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-//API Photo Fetch
+
+  const selectTopic = (topicId) => {
+    dispatch({ type: ACTIONS.SELECT_TOPIC, payload: topicId });
+  };
 
   useEffect(() => {
     fetch('/api/photos')
@@ -97,8 +106,13 @@ export const useApplicationData = () => {
     if (state.selectedTopic) {
       const topicId = state.selectedTopic;
       fetch(`/api/topics/photos/${topicId}`)
-        .then(res => res.json())
-        .then((data) => dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data }))
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+          }
+          return res.json();
+        })
+        .then((data) => dispatch({ type: ACTIONS.SET_PHOTOS_BY_TOPIC, payload: data }))
         .catch(error => console.error('Error Fetching Photos by Topic:', error));
     }
   }, [state.selectedTopic]);
@@ -121,6 +135,7 @@ export const useApplicationData = () => {
     ...state,
     toggleFavourite,
     handlePhotoSelect,
+    selectTopic,
     dispatch,
   };
 };
