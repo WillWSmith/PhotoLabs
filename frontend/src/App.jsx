@@ -23,6 +23,7 @@ const App = () => {
     dispatch,
     photoData,
     topicData,
+    selectTopic,
   } = useApplicationData();
 
   const closePhotoDetails = () => {
@@ -36,6 +37,7 @@ const App = () => {
           photos={photoData}
           topics={topicData}
           handlePhotoSelect={handlePhotoSelect}
+          selectTopic={selectTopic}
         />
         {displayModal && <div className="modal-backdrop" onClick={closePhotoDetails} />} 
         {displayModal && selectedPhoto && (
