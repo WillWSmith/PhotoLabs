@@ -21,14 +21,7 @@ export const ACTIONS = {
   SET_SIMILAR_PHOTOS: 'SET_SIMILAR_PHOTOS',
 };
 
-//API Photo Fetch
 
-useEffect(() => {
-  fetch('http://localhost:3001/api/photos')
-  .then(res => res.json())
-  .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
-  .catch(error => console.error('Error Fetching Photos:', error))
-}, [])
 
 //Reducer Function
 function reducer(state, action) {
@@ -77,6 +70,14 @@ function reducer(state, action) {
 
 export const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+//API Photo Fetch
+
+  useEffect(() => {
+    fetch('/api/photos')
+    .then(res => res.json())
+    .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+    .catch(error => console.error('Error Fetching Photos:', error))
+  }, [])
 
   const toggleFavourite = (photoId) => {
     const actionType = state.favourites.includes(photoId) ? ACTIONS.FAV_PHOTO_REMOVED : ACTIONS.FAV_PHOTO_ADDED;

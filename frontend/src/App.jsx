@@ -1,7 +1,6 @@
 import React from 'react';
 import HomeRoute from 'routes/HomeRoute';
 import './App.scss';
-import photos from 'mocks/photos';
 import topics from 'mocks/topics';
 import { FavouritesContext, useApplicationData } from 'hooks/useApplicationData';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
@@ -23,6 +22,7 @@ const App = () => {
     similarPhotos,
     handlePhotoSelect,
     dispatch,
+    photoData,
   } = useApplicationData();
 
   const closePhotoDetails = () => {
@@ -33,7 +33,7 @@ const App = () => {
     <FavouritesProvider favourites={favourites} toggleFavourite={toggleFavourite}>
       <div className="App">
         <HomeRoute
-          photos={photos}
+          photos={photoData}
           topics={topics}
           handlePhotoSelect={handlePhotoSelect}
         />
