@@ -94,11 +94,14 @@ export const useApplicationData = () => {
   }, [])
 
   useEffect(() => {
-    fetch(`/api/topics/photos/:topic_id`)
-    .then(res => res.json())
-    .then((data) => dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data }))
-    .catch(error => console.error('Error Fetching Photos by Topic:', error))
-  }, [state.selectedTopic])
+    if (state.selectedTopic) {
+      const topicId = state.selectedTopic;
+      fetch(`/api/topics/photos/${topicId}`)
+        .then(res => res.json())
+        .then((data) => dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data }))
+        .catch(error => console.error('Error Fetching Photos by Topic:', error));
+    }
+  }, [state.selectedTopic]);
 
   const toggleFavourite = (photoId) => {
     const actionType = state.favourites.includes(photoId) ? ACTIONS.FAV_PHOTO_REMOVED : ACTIONS.FAV_PHOTO_ADDED;
