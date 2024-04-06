@@ -1,5 +1,4 @@
-import React, {useContext} from 'react';
-import { FavouritesContext } from '../App';
+import React from 'react';
 import FavIcon from './FavIcon';
 import '../styles/FavBadge.scss';
 
