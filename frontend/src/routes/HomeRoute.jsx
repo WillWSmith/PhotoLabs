@@ -15,11 +15,13 @@ const HomeRoute = ({topics, photos, handlePhotoSelect, selectTopic}) => {
       isFavPhotoExist={favouriteExists}
       selectTopic={selectTopic}
       />
+      <div className="home-route__photo-list">
       <PhotoList 
       photos={photos} 
       favourites={favourites} 
       toggleFavourite={toggleFavourite} 
       handlePhotoSelect={handlePhotoSelect}/>
+      </div>
     </div>
   );
 };
