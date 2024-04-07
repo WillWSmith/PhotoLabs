@@ -32,7 +32,7 @@ const PhotoDetailsModal = ({ closePhotoDetails, photoDetails, similarPhotos }) =
           className="photo-list__user-profile"
         />
         <div>
-          <span className="photo-list__user-info">{photoDetails.user.name}</span>
+          <span className="photo-details__user-info">{photoDetails.user.name}</span>
           <div className="photo-list__user-location">
             {photoDetails.location && (
               <>
