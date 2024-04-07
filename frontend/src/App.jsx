@@ -1,16 +1,9 @@
 import React from 'react';
 import HomeRoute from 'routes/HomeRoute';
 import './App.scss';
-import { FavouritesContext, useApplicationData } from 'hooks/useApplicationData';
+import { useApplicationData, FavouritesContext } from 'hooks/useApplicationData';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
-
-const FavouritesProvider = ({ children, favourites, toggleFavourite }) => {
-  return (
-    <FavouritesContext.Provider value={{ favourites, toggleFavourite }}>
-      {children}
-    </FavouritesContext.Provider>
-  );
-};
+import LikedPhotosModal from 'routes/LikedPhotosModal';
 
 const App = () => {
   const {
@@ -24,6 +17,8 @@ const App = () => {
     photoData,
     topicData,
     selectTopic,
+    toggleLikedPhotosModal,
+    showLikedPhotos,
   } = useApplicationData();
 
   const closePhotoDetails = () => {
@@ -31,7 +26,20 @@ const App = () => {
   };
 
   return (
-    <FavouritesProvider favourites={favourites} toggleFavourite={toggleFavourite}>
+    <FavouritesContext.Provider value={{
+      favourites,
+      toggleFavourite,
+      displayModal,
+      selectedPhoto,
+      similarPhotos,
+      handlePhotoSelect,
+      dispatch,
+      photoData,
+      topicData,
+      selectTopic,
+      toggleLikedPhotosModal,
+      showLikedPhotos
+    }}>
       <div className="App">
         <HomeRoute
           photos={photoData}
@@ -39,6 +47,7 @@ const App = () => {
           handlePhotoSelect={handlePhotoSelect}
           selectTopic={selectTopic}
         />
+        {showLikedPhotos && <LikedPhotosModal onClose={() => toggleLikedPhotosModal()} />}
         {displayModal && <div className="modal-backdrop" onClick={closePhotoDetails} />} 
         {displayModal && selectedPhoto && (
           <PhotoDetailsModal
@@ -48,11 +57,8 @@ const App = () => {
           />
         )}
       </div>
-    </FavouritesProvider>
+    </FavouritesContext.Provider>
   );
 };
 
 export default App;
-
-
-

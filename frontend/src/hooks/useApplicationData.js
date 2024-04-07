@@ -10,6 +10,7 @@ const initialState = {
   photoData: [],
   topicData: [],
   selectedTopic: null,
+  showLikedPhotos: false
 };
 
 export const ACTIONS = {
@@ -21,7 +22,8 @@ export const ACTIONS = {
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   SET_SIMILAR_PHOTOS: 'SET_SIMILAR_PHOTOS',
   GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
-  SET_SELECTED_TOPIC: 'SET_SELECTED_TOPIC'
+  SET_SELECTED_TOPIC: 'SET_SELECTED_TOPIC',
+  TOGGLE_LIKED_PHOTOS_MODAL: 'TOGGLE_LIKED_PHOTOS_MODAL',
 };
 
 
@@ -76,7 +78,11 @@ function reducer(state, action) {
           ...state,
           selectedTopic: action.payload,
         };
-        
+      case ACTIONS.TOGGLE_LIKED_PHOTOS_MODAL:
+        return {
+          ...state,
+          showLikedPhotos: !state.showLikedPhotos,
+        };  
       default:
         throw new Error(`Unsupported action type: ${action.type}`);
   }
@@ -87,6 +93,10 @@ export const useApplicationData = () => {
 
   const selectTopic = (topicId) => {
     dispatch({ type: ACTIONS.SET_SELECTED_TOPIC, payload: topicId });
+  };
+
+  const toggleLikedPhotosModal = () => {
+    dispatch({ type: ACTIONS.TOGGLE_LIKED_PHOTOS_MODAL });
   };
 
   useEffect(() => {
@@ -142,5 +152,6 @@ export const useApplicationData = () => {
     handlePhotoSelect,
     selectTopic,
     dispatch,
+    toggleLikedPhotosModal,
   };
 };
