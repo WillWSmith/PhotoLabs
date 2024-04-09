@@ -48,7 +48,7 @@ const App = () => {
           selectTopic={selectTopic}
         />
         {showLikedPhotos && <LikedPhotosModal onClose={() => toggleLikedPhotosModal()} />}
-        {displayModal && <div className="modal-backdrop" onClick={closePhotoDetails} />} 
+        {displayModal && <div className="modal-backdrop" onClick={closePhotoDetails} />}
         {displayModal && selectedPhoto && (
           <PhotoDetailsModal
             photoDetails={selectedPhoto}
