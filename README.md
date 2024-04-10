@@ -13,9 +13,11 @@ cd frontend
 npm start
 ```
 
-## [Backend](/backend/) Running Backend Server
+## [Backend](/backend/) Running Backend Server & Database Setup
 
-Read `backend/readme` for further setup details.
+Read [backend/readme](/backend/README.md) for instructions on how to setup the backend server and database before continuing. 
+
+Once that is completed ensure you have the back end server running.
 
 ```sh
 cd backend
