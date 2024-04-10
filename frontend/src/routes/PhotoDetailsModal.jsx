@@ -12,34 +12,34 @@ const PhotoDetailsModal = ({ closePhotoDetails, photoDetails, similarPhotos }) =
 
   return (
     <div className="photo-details-modal">
-        <button className="photo-details-modal__close-button" onClick={closePhotoDetails}>
-          <img src={closeSymbol} alt="Close" />
-        </button>
+      <button className="photo-details-modal__close-button" onClick={closePhotoDetails}>
+        <img src={closeSymbol} alt="Close" />
+      </button>
       <div className="photo-details-modal__images">
-        <PhotoFavButton 
+        <PhotoFavButton
           isFavourited={isMainPhotoFavourited}
           toggleFavourite={() => toggleFavourite(photoDetails.id)}
         />
-        <img 
-          src={photoDetails.urls.full} 
-          alt={photoDetails.description || 'Photo description unavailable'} 
-          className="photo-details-modal__image" 
+        <img
+          src={photoDetails.urls.full}
+          alt={photoDetails.description || 'Photo description unavailable'}
+          className="photo-details-modal__image"
         />
-      <div className="photo-details-modal__photographer-details">
-        <img 
-          src={photoDetails.user.profile} 
-          alt={`${photoDetails.user.name}'s profile`} 
-          className="photo-list__user-profile"
-        />
-        <div>
-          <span className="photo-list__user-info">{photoDetails.user.name}</span>
-          <div className="photo-list__user-location">
-            {photoDetails.location && (
-              <>
-                {photoDetails.location.city ? `${photoDetails.location.city}, ` : ''}
-                {photoDetails.location.country}
-              </>
-            )}
+        <div className="photo-details-modal__photographer-details">
+          <img
+            src={photoDetails.user.profile}
+            alt={`${photoDetails.user.name}'s profile`}
+            className="photo-list__user-profile"
+          />
+          <div>
+            <span className="photo-details__user-info">{photoDetails.user.name}</span>
+            <div className="photo-list__user-location">
+              {photoDetails.location && (
+                <>
+                  {photoDetails.location.city ? `${photoDetails.location.city}, ` : ''}
+                  {photoDetails.location.country}
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -47,7 +47,7 @@ const PhotoDetailsModal = ({ closePhotoDetails, photoDetails, similarPhotos }) =
       
       <h3 className="photo-details-modal__images">Similar Photos</h3>
       
-        <PhotoList photos={similarPhotos} favourites={favourites} toggleFavourite={toggleFavourite} />
+      <PhotoList photos={similarPhotos} favourites={favourites} toggleFavourite={toggleFavourite} />
     </div>
   );
 };
