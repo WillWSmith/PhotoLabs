@@ -10,17 +10,17 @@ const HomeRoute = ({topics, photos, handlePhotoSelect, selectTopic}) => {
 
   return (
     <div className="home-route">
-      <TopNavigationBar 
-      topics={topics} 
-      isFavPhotoExist={favouriteExists}
-      selectTopic={selectTopic}
+      <TopNavigationBar
+        topics={topics}
+        isFavPhotoExist={favouriteExists}
+        selectTopic={selectTopic}
       />
       <div className="home-route__photo-list">
-      <PhotoList 
-      photos={photos} 
-      favourites={favourites} 
-      toggleFavourite={toggleFavourite} 
-      handlePhotoSelect={handlePhotoSelect}/>
+        <PhotoList
+          photos={photos}
+          favourites={favourites}
+          toggleFavourite={toggleFavourite}
+          handlePhotoSelect={handlePhotoSelect}/>
       </div>
     </div>
   );

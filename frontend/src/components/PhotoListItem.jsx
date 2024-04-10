@@ -10,15 +10,15 @@ const PhotoListItem = ({ photo, isFavourited, toggleFavourite, handlePhotoSelect
         isFavourited={isFavourited}
         toggleFavourite={() => toggleFavourite(photo.id)}
       />
-      <img 
-        className="photo-list__image" 
-        src={photo.urls.regular} 
-        alt="Photo" 
+      <img
+        className="photo-list__image"
+        src={photo.urls.regular}
+        alt="Photo"
         onClick={() => handlePhotoSelect(photo)}
       />
       <div className="photo-list__user-details">
-        <img 
-          className="photo-list__user-profile" 
+        <img
+          className="photo-list__user-profile"
           src={photo.user.profile}
           alt={`${photo.user.name}'s profile`}
         />

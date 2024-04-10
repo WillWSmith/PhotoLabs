@@ -12,11 +12,11 @@ const PhotoList = ({ photos, favourites, toggleFavourite, handlePhotoSelect }) =
   return (
     <ul className="photo-list">
       {photos.map(photo => (
-        <PhotoListItem 
-          key={photo.id} 
-          photo={photo} 
+        <PhotoListItem
+          key={photo.id}
+          photo={photo}
           isFavourited={isFavourited(photo.id)}
-          toggleFavourite={toggleFavourite ? () => toggleFavourite(photo.id) : undefined} 
+          toggleFavourite={toggleFavourite ? () => toggleFavourite(photo.id) : undefined}
           handlePhotoSelect={handlePhotoSelect}
         />
       ))}

@@ -27,58 +27,59 @@ export const ACTIONS = {
 
 
 //Reducer Function
+// eslint-disable-next-line func-style
 function reducer(state, action) {
   switch (action.type) {
-    case ACTIONS.FAV_PHOTO_ADDED:
-      return {
-        ...state,
-        favourites: state.favourites.includes(action.payload)
-          ? state.favourites
-          : [...state.favourites, action.payload],
-      };
-    case ACTIONS.FAV_PHOTO_REMOVED:
-      return {
-        ...state,
-        favourites: state.favourites.filter((id) => id !== action.payload),
-      };
-    case ACTIONS.SET_PHOTO_DATA:
-      return {
-        ...state,
-        photoData: action.payload,
-      };
-    case ACTIONS.SET_TOPIC_DATA:
-      return {
-        ...state,
-        topicData: action.payload,
-      };
-    case ACTIONS.SELECT_PHOTO:
-      return {
-        ...state,
-        selectedPhoto: action.payload,
-      };
-      case ACTIONS.DISPLAY_PHOTO_DETAILS:
-        return {
-          ...state,
-          displayModal: action.payload,
-        };
-      case ACTIONS.SET_SIMILAR_PHOTOS:
-        return {
-          ...state,
-          similarPhotos: action.payload,
-        };
-      case ACTIONS.GET_PHOTOS_BY_TOPICS:
-        return {
-          ...state,
-          photoData: action.payload,
-        };
-      case ACTIONS.SET_SELECTED_TOPIC:
-        return {
-          ...state,
-          selectedTopic: action.payload,
-        };
+  case ACTIONS.FAV_PHOTO_ADDED:
+    return {
+      ...state,
+      favourites: state.favourites.includes(action.payload)
+        ? state.favourites
+        : [...state.favourites, action.payload],
+    };
+  case ACTIONS.FAV_PHOTO_REMOVED:
+    return {
+      ...state,
+      favourites: state.favourites.filter((id) => id !== action.payload),
+    };
+  case ACTIONS.SET_PHOTO_DATA:
+    return {
+      ...state,
+      photoData: action.payload,
+    };
+  case ACTIONS.SET_TOPIC_DATA:
+    return {
+      ...state,
+      topicData: action.payload,
+    };
+  case ACTIONS.SELECT_PHOTO:
+    return {
+      ...state,
+      selectedPhoto: action.payload,
+    };
+  case ACTIONS.DISPLAY_PHOTO_DETAILS:
+    return {
+      ...state,
+      displayModal: action.payload,
+    };
+  case ACTIONS.SET_SIMILAR_PHOTOS:
+    return {
+      ...state,
+      similarPhotos: action.payload,
+    };
+  case ACTIONS.GET_PHOTOS_BY_TOPICS:
+    return {
+      ...state,
+      photoData: action.payload,
+    };
+  case ACTIONS.SET_SELECTED_TOPIC:
+    return {
+      ...state,
+      selectedTopic: action.payload,
+    };
         
-      default:
-        throw new Error(`Unsupported action type: ${action.type}`);
+  default:
+    throw new Error(`Unsupported action type: ${action.type}`);
   }
 }
 
@@ -91,19 +92,19 @@ export const useApplicationData = () => {
 
   useEffect(() => {
     fetch('/api/photos')
-    .then(res => res.json())
-    .then((data) => {
-      dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data })
-    })
-    .catch(error => console.error('Error Fetching Photos:', error))
-  }, [])
+      .then(res => res.json())
+      .then((data) => {
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data });
+      })
+      .catch(error => console.error('Error Fetching Photos:', error));
+  }, []);
 
   useEffect(() => {
     fetch('/api/topics')
-    .then(res => res.json())
-    .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
-    .catch(error => console.error('Error Fetching Topics:', error))
-  }, [])
+      .then(res => res.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
+      .catch(error => console.error('Error Fetching Topics:', error));
+  }, []);
 
   useEffect(() => {
     if (state.selectedTopic) {
@@ -130,9 +131,9 @@ export const useApplicationData = () => {
   const handlePhotoSelect = (photo) => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo });
     dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: true });
-    dispatch({ 
-      type: ACTIONS.SET_SIMILAR_PHOTOS, 
-      payload: Array.isArray(photo.similar_photos) ? photo.similar_photos : Object.values(photo.similar_photos || {}) 
+    dispatch({
+      type: ACTIONS.SET_SIMILAR_PHOTOS,
+      payload: Array.isArray(photo.similar_photos) ? photo.similar_photos : Object.values(photo.similar_photos || {})
     });
   };
 

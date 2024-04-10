@@ -39,7 +39,7 @@ const App = () => {
           handlePhotoSelect={handlePhotoSelect}
           selectTopic={selectTopic}
         />
-        {displayModal && <div className="modal-backdrop" onClick={closePhotoDetails} />} 
+        {displayModal && <div className="modal-backdrop" onClick={closePhotoDetails} />}
         {displayModal && selectedPhoto && (
           <PhotoDetailsModal
             photoDetails={selectedPhoto}

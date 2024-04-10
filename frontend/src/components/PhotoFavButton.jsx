@@ -2,7 +2,8 @@ import React from 'react';
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
-function PhotoFavButton({ isFavourited, toggleFavourite}) {
+// eslint-disable-next-line func-style
+function PhotoFavButton({isFavourited, toggleFavourite}) {
 
   return (
     <div className="photo-list__fav-icon" onClick={toggleFavourite}>

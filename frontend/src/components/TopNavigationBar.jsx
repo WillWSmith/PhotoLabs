@@ -1,6 +1,6 @@
 import React from 'react';
 import TopicList from './TopicList';
-import '../styles/TopNavigationBar.scss'
+import '../styles/TopNavigationBar.scss';
 import FavBadge from './FavBadge';
 
 const TopNavigation = ({topics, isFavPhotoExist, selectTopic }) => {
@@ -10,7 +10,7 @@ const TopNavigation = ({topics, isFavPhotoExist, selectTopic }) => {
       <TopicList topics={topics} selectTopic={selectTopic}/>
       <FavBadge isFavPhotoExist={isFavPhotoExist}/>
     </div>
-  )
-}
+  );
+};
 
 export default TopNavigation;
